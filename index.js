@@ -23,7 +23,7 @@ const currency_list = [
     category: [1, 4, 5],
     isActiveResell: true,
     isNew: false,
-    isDelist: false,
+    isDelist: true,
   },
   {
     name: "Solana",
@@ -148,14 +148,12 @@ const currency = {
 
 ////11111111111
 
-
-
 currency_list.forEach((item) => {
   console.log(item);
 });
 
 const filterCurrencyListWithBaseCurrencyCode = (baseCurrency) => {
-  return currency_list.filter(item => item.base_currency=baseCurrency);
+  return currency_list.filter(item => item.base_currency===baseCurrency);
 };
 
 console.log(1,filterCurrencyListWithBaseCurrencyCode("BTC"));
@@ -164,30 +162,37 @@ console.log(3,filterCurrencyListWithBaseCurrencyCode("TRY"));
 
 
 
-//////22222223333333
+//////2222222
 
-let delistArr = [];
-currency_list.map((item) => {
- 
- if(item.isNew && item.isDelist) {
-   delistArr.push(item);
- }
-  console.log(delistArr);
+const findNewCoin = () => {
+  return currency_list.filter(item => item.isNew);
+
   
+};
+   console.log(2,findNewCoin());
+
+
+
+//////3333333
+
+const findDelistCoin = () => {
+  return currency_list.filter(item => item.isDelist);
   
-});
+};
+   console.log(2,findDelistCoin());
+
+
 
 
 
 ////444444444
 
-var searchCoin =  currency_list.filter(
+const searchCoin = (keywords) => {
+  return currency_list.filter(item => item.name.toLowerCase().includes(keywords));
   
-  function(currency_list) {
-  return currency_list.name.includes("To");
-});
-
-console.log(4,searchCoin);
+};
+console.log(4,searchCoin('to'));
+console.log(4,searchCoin('bi'));
 
 
 
@@ -196,10 +201,10 @@ console.log(4,searchCoin);
 //555555555555555 
 
 
-var searchCat =  currency_list.filter(
+const searchCat = (keywords) => {
+  return currency_list.filter(item => item.category.includes(keywords));
   
-  function(currency_list) {
-  return currency_list.category.includes(1);
-});
+};
+console.log(5,searchCat(2));
 
-console.log(5,searchCat);
+
